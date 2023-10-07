@@ -15,13 +15,14 @@ const BlogButton = ({ blog }: { blog: any }) => {
       key={blog.slug}
       onClick={() => router.push(`/${blog.slug.current}`)}
       className="
+        h-fit w-full
         border-2 border-secondary
         hover:translate-x-1 hover:-translate-y-1
         hover:shadow-[-4px_4px_0_black]
         transition-all duration-300 
       "
     >
-      <div className="relative w-[250px] aspect-[5/4]">
+      <div className="relative w-full aspect-[6/4]">
         <Image
           className="object-cover object-center aspect-video"
           src={builder.image(blog.mainImage).url()}

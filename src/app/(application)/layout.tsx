@@ -1,4 +1,4 @@
-import "./globals.css";
+import "../globals.css";
 
 import { Montserrat } from "next/font/google";
 
@@ -14,6 +14,7 @@ const montserrat = Montserrat({
 });
 
 import Navbar from "@/app/components/navbar";
+import { PageTransition } from "./PageTransition";
 
 export default function RootLayout({
   children,
@@ -22,19 +23,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={montserrat.className}>
-      <body>
-        <div className="p-2 h-screen w-screen overflow-hidden bg-primary ">
-          <div className="h-full flex flex-col relative border-2 border-secondary">
-            <div
-              className="
-                h-full w-full
-              "
-            >
-              {children}
-            </div>
-
-            <Navbar />
-          </div>
+      <body className="p-2 h-full w-screen overflow-hidden bg-primary ">
+        <div
+          className="
+            h-full w-full flex flex-grow flex-col border-2 border-secondary relative
+          "
+        >
+          <PageTransition>{children}</PageTransition>
+          <Navbar />
         </div>
       </body>
     </html>

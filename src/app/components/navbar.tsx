@@ -8,6 +8,7 @@ function Navbar() {
   return (
     <div
       className="
+          sticky bottom-0
           z-10 h-16 w-full flex justify-evenly bg-primary items-center border-t-2 border-secondary
           
         "

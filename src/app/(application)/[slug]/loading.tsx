@@ -5,8 +5,8 @@ const Loading = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh",
       }}
+      className="h-full w-full"
     >
       loading...
     </div>
