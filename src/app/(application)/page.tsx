@@ -15,7 +15,13 @@ async function Homepage() {
 
   return (
     <div className="h-full  overflow-y-scroll">
-      <div className="text-black p-4 grid grid-cols-6 gap-4">
+      <div
+        className="
+          text-black p-4 
+          grid grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))]
+          gap-4
+        "
+      >
         {posts.map((blog) => (
           <BlogButton key={blog._id} blog={blog} />
         ))}

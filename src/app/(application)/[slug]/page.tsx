@@ -4,6 +4,8 @@ import { postQuery, postPathsQuery } from "../../../../sanity/lib/queries";
 import { client } from "../../../../sanity/lib/client";
 import ImageSlideShow from "./ImageSlideShow";
 
+import { PortableText } from "@portabletext/react";
+
 // Prepare Next.js to know which routes already exist
 export async function generateStaticParams() {
   // Important, use the plain Sanity Client here
@@ -18,6 +20,7 @@ export default async function Blog({ params }: { params: any }) {
       title: string;
       mainImage: any;
       imageSlideShow: any;
+      body: any;
     }
   >({
     query: postQuery,
@@ -27,17 +30,21 @@ export default async function Blog({ params }: { params: any }) {
   return (
     <div
       className="
+        h-full
         text-black p-4
-        grid grid-cols-12 gap-4
+        flex flex-col md:flex-row
+        gap-4 overflow-y-auto
       "
     >
-      <div className="col-span-4 overflow-hidden">
+      <div className="md:w-1/3 h-fit">
         <ImageSlideShow post={post} />
       </div>
-      <div className="col-span-7">
+      <div className="">
         <h1 className="text-xl font-black text-secondary">
           {post.title as string}
         </h1>
+        <br />
+        <PortableText value={post.body} />
       </div>
     </div>
   );

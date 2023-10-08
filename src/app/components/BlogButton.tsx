@@ -1,11 +1,8 @@
 "use client";
 
-import { client } from "../../../sanity/lib/client";
 import Image from "next/image";
-import imageUrlBuilder from "@sanity/image-url";
 import { useRouter } from "next/navigation";
-
-const builder = imageUrlBuilder(client);
+import { urlForImage } from "../../../sanity/lib/image";
 
 const BlogButton = ({ blog }: { blog: any }) => {
   const router = useRouter();
@@ -22,14 +19,19 @@ const BlogButton = ({ blog }: { blog: any }) => {
         transition-all duration-300 
       "
     >
-      <div className="relative w-full aspect-[6/4]">
+      <div className="relative w-full aspect-square">
         <Image
-          className="object-cover object-center aspect-video"
-          src={builder.image(blog.mainImage).url()}
-          fill
+          className="object-cover object-center aspect-square"
+          src={urlForImage(blog.mainImage).url()}
           quality={100}
           priority
           alt=""
+          style={{
+            width: "100%",
+            height: "auto",
+          }}
+          width={300}
+          height={300}
         />
       </div>
 

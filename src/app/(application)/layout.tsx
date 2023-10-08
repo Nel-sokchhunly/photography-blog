@@ -29,7 +29,9 @@ export default function RootLayout({
             h-full w-full flex flex-grow flex-col border-2 border-secondary relative
           "
         >
-          <PageTransition>{children}</PageTransition>
+          <div className="flex-1 overflow-y-auto">
+            <PageTransition>{children}</PageTransition>
+          </div>
           <Navbar />
         </div>
       </body>

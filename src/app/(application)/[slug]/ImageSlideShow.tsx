@@ -19,69 +19,69 @@ export default function ImageSlideShow({ post }: { post: any }) {
     },
     center: {
       opacity: 1,
+      height: "auto",
     },
     exit: {
       opacity: 0,
     },
   };
 
+  // if (!post.imageSlideShow)
   return (
-    <div className="flex-1 flex flex-col overflow-hidden">
-      <AnimatePresence mode="popLayout">
-        <motion.div
-          key={builder.image(post.imageSlideShow[currentImage]).url()}
-          className="flex-1 relative w-full aspect-square mb-2"
-          variants={variants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{
-            x: { type: "spring", stiffness: 300, damping: 30 },
-            duration: 0.6,
-          }}
-        >
-          <Image
-            className="object-cover object-center aspect-auto"
-            src={builder.image(post.imageSlideShow[currentImage]).url()}
-            fill
-            quality={100}
-            priority
-            alt=""
-          />
-        </motion.div>
-      </AnimatePresence>
+    <Image
+      className="object-cover object-center aspect-auto"
+      src={builder.image(post.mainImage).url()}
+      // fill
+      quality={100}
+      priority
+      alt=""
+      style={{
+        width: "100%",
+        height: "auto",
+      }}
+      sizes="100vw"
+      width={600}
+      height={400}
+    />
+  );
 
-      <div className="flex gap-2">
+  return (
+    <motion.div
+      layout="position"
+      className="
+        w-full h-fit flex-1 flex flex-col gap-2
+      "
+    >
+      <div className="flex flex-col gap-2">
         {(post.imageSlideShow as any)?.map((image: any, index: number) => {
           return (
-            <motion.button
+            <div
               key={builder.image(image).width(300).height(300).url()}
               className={`
-                ${
-                  index === currentImage
-                    ? "border-2 border-secondary"
-                    : "border-2 border-primary"
+                : "border-2 border-primary"
                 }
-                relative w-[100px] aspect-square box-content transition-all duration-300
+                relative w-full  aspect-auto box-content transition-all duration-300
                 
               `}
-              onClick={() => {
-                setCurrentImage(index);
-              }}
-              disabled={index === currentImage}
             >
               <Image
                 className="object-contain object-center aspect-auto"
-                src={builder.image(image).width(300).height(300).url()}
-                fill
+                src={builder.image(image).url()}
                 quality={100}
                 priority
                 alt=""
+                style={{
+                  width: "100%",
+                  height: "100%",
+                }}
+                sizes="100vw"
+                width={600}
+                height={400}
               />
-            </motion.button>
+            </div>
           );
         })}
       </div>
-    </div>
+    </motion.div>
   );
 }
